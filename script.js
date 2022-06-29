@@ -24,7 +24,23 @@ function viewLibrary() {
         <li>${book.read}</li>
       </ul>
       `;
+    const deleteButton = document.createElement("button");
+    bookDiv.appendChild(deleteButton);
+    deleteButton.textContent = "X";
+    deleteButton.style.width = "40px";
+    deleteButton.style.textAlign = "center";
+    deleteButton.style.backgroundColor = "red";
+    deleteButton.style.border = "none";
+    deleteButton.style.borderRadius = "10px";
+    deleteButton.style.color = "white";
+    deleteButton.style.fontWeight = "bold";
+    deleteButton.addEventListener("click", deleteBook);
   });
+}
+
+function deleteBook(e) {
+  const parent = e.target.parentElement;
+  parent.remove();
 }
 
 let myLibrary = [
@@ -49,11 +65,18 @@ let myLibrary = [
 ];
 
 class Book {
-  constructor(name, author, pages, read) {
+  constructor(name, author, pages) {
     this.name = name;
     this.author = author;
     this.pages = pages;
-    this.read = read;
+    this.read = "Not read yet";
+  }
+  markRead() {
+    if (this.read === "Not read yet") {
+      this.read = "Read";
+    } else {
+      this.read = "Not read yet";
+    }
   }
 }
 
@@ -78,6 +101,17 @@ function addBookToLibrary() {
         <li>${book.read}</li>
       </ul>
       `;
+    const deleteButton = document.createElement("button");
+    bookDiv.appendChild(deleteButton);
+    deleteButton.textContent = "X";
+    deleteButton.style.width = "40px";
+    deleteButton.style.textAlign = "center";
+    deleteButton.style.backgroundColor = "red";
+    deleteButton.style.border = "none";
+    deleteButton.style.borderRadius = "10px";
+    deleteButton.style.color = "white";
+    deleteButton.style.fontWeight = "bold";
+    deleteButton.addEventListener("click", deleteBook);
     duplicatePara.textContent = "";
   } else {
     duplicatePara.textContent = "Book is already in library";
