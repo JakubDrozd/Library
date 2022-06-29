@@ -26,7 +26,7 @@ function viewLibrary() {
       `;
     const readButton = document.createElement("button");
     bookDiv.appendChild(readButton);
-    readButton.textContent = "Mark as read";
+    readButton.textContent = "Not read";
     readButton.style.width = "150px";
     readButton.style.textAlign = "center";
     readButton.style.backgroundColor = "green";
@@ -52,14 +52,14 @@ function viewLibrary() {
 }
 
 function markRead(e) {
-  if (e.target.textContent === "Mark as read") {
+  if (e.target.textContent === "Not read") {
     const parent = e.target.parentElement;
     parent.style.backgroundColor = "lime";
-    e.target.textContent = "Marked as read";
-  } else if (e.target.textContent === "Marked as read") {
+    e.target.textContent = "Read";
+  } else if (e.target.textContent === "Read") {
     const parent = e.target.parentElement;
     parent.style.backgroundColor = "white";
-    e.target.textContent = "Mark as read";
+    e.target.textContent = "Not read";
   }
 }
 
@@ -94,7 +94,6 @@ class Book {
     this.name = name;
     this.author = author;
     this.pages = pages;
-    this.read = "Not read yet";
   }
 }
 
@@ -121,7 +120,7 @@ function addBookToLibrary() {
       `;
     const readButton = document.createElement("button");
     bookDiv.appendChild(readButton);
-    readButton.textContent = "Mark as read";
+    readButton.textContent = "Not read";
     readButton.style.width = "150px";
     readButton.style.textAlign = "center";
     readButton.style.backgroundColor = "green";
