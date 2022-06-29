@@ -119,6 +119,19 @@ function addBookToLibrary() {
         <li>${book.read}</li>
       </ul>
       `;
+    const readButton = document.createElement("button");
+    bookDiv.appendChild(readButton);
+    readButton.textContent = "Mark as read";
+    readButton.style.width = "150px";
+    readButton.style.textAlign = "center";
+    readButton.style.backgroundColor = "green";
+    readButton.style.border = "none";
+    readButton.style.borderRadius = "10px";
+    readButton.style.color = "white";
+    readButton.style.fontWeight = "bold";
+    readButton.style.marginBottom = "0.2rem";
+    readButton.addEventListener("click", markRead);
+
     const deleteButton = document.createElement("button");
     bookDiv.appendChild(deleteButton);
     deleteButton.textContent = "X";
