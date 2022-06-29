@@ -13,11 +13,8 @@ const newbook = document
   .addEventListener("click", addBookToLibrary);
 
 function viewLibrary() {
-  let i = 1;
   myLibrary.forEach((book) => {
     const bookDiv = document.createElement("div");
-    bookDiv.classList.add(`book`);
-    bookDiv.classList.add(`book${i}`);
     container.appendChild(bookDiv);
     bookDiv.innerHTML = `
       <h3>${book.name}</h3>
@@ -27,7 +24,6 @@ function viewLibrary() {
         <li>${book.read}</li>
       </ul>
       `;
-    i++;
   });
 }
 
@@ -62,8 +58,30 @@ class Book {
 }
 
 function addBookToLibrary() {
-  myLibrary = [];
-  const book = new Book(title.value, author.value, pages.value);
-  myLibrary.push(book);
-  viewLibrary();
+  const duplicate = myLibrary.find((book) => {
+    if (book.name === title.value) {
+      return true;
+    }
+
+    return false;
+  });
+  if (duplicate === undefined) {
+    const book = new Book(title.value, author.value, pages.value);
+    myLibrary.push(book);
+    const bookDiv = document.createElement("div");
+    container.appendChild(bookDiv);
+    bookDiv.innerHTML = `
+      <h3>${book.name}</h3>
+      <ul>
+        <li>by ${book.author}</li>
+        <li>${book.pages} pages</li>
+        <li>${book.read}</li>
+      </ul>
+      `;
+    duplicatePara.textContent = "";
+  } else {
+    duplicatePara.textContent = "Book is already in library";
+  }
 }
+
+const duplicatePara = document.querySelector(".duplicate");
