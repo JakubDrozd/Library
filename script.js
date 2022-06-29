@@ -117,7 +117,7 @@ function addBookToLibrary() {
     const readButton = document.createElement("button");
     bookDiv.appendChild(readButton);
     readButton.textContent = "Not read";
-    readButton.style.width = "150px";
+    readButton.style.width = "200px";
     readButton.style.textAlign = "center";
     readButton.style.backgroundColor = "green";
     readButton.style.border = "none";
@@ -130,7 +130,7 @@ function addBookToLibrary() {
     const deleteButton = document.createElement("button");
     bookDiv.appendChild(deleteButton);
     deleteButton.textContent = "X";
-    deleteButton.style.width = "40px";
+    deleteButton.style.width = "200px";
     deleteButton.style.textAlign = "center";
     deleteButton.style.backgroundColor = "red";
     deleteButton.style.border = "none";
@@ -140,8 +140,52 @@ function addBookToLibrary() {
     deleteButton.addEventListener("click", deleteBook);
     duplicatePara.textContent = "";
   } else {
+    duplicatePara.style.color = "red";
+    duplicatePara.style.fontStyle = "italic";
     duplicatePara.textContent = "Book is already in library";
   }
 }
 
 const duplicatePara = document.querySelector(".duplicate");
+
+// MODAL
+
+const openModalButtons = document.querySelectorAll("[data-modal-target]");
+const closeModalButtons = document.querySelectorAll("[data-close-button]");
+const overlay = document.getElementById("overlay");
+
+openModalButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const modal = document.querySelector(button.dataset.modalTarget);
+    openModal(modal);
+  });
+});
+
+overlay.addEventListener("click", () => {
+  const modals = document.querySelectorAll(".modal.active");
+  modals.forEach((modal) => {
+    closeModal(modal);
+  });
+});
+
+closeModalButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const modal = button.closest(".modal");
+    closeModal(modal);
+  });
+});
+
+function openModal(modal) {
+  if (modal === null) return;
+
+  modal.classList.add("active");
+  overlay.classList.add("active");
+}
+
+function closeModal(modal) {
+  if (modal === null) {
+    return;
+  }
+  modal.classList.remove("active");
+  overlay.classList.remove("active");
+}

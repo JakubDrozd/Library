@@ -13,27 +13,43 @@
   </head>
   <body>
     <div class="header"><h1>My Library</h1></div>
-    <div class="addDiv">Add new book+</div>
-    <div class="hero">
-      <div class="sidebar">
-        <h3>Add to library</h3>
-        <form action="" method="post" id="myForm">
-          <div class="field">
-            <label for="title">Title<br /></label
-            ><input type="text" name="title" id="title" />
-          </div>
-          <div class="field">
-            <label for="author">Author<br /></label
-            ><input type="text" name="author" id="author" />
-          </div>
-          <div class="field">
-            <label for="pages">Pages<br /></label
-            ><input type="number" name="pages" id="pages" min="1" max="32640" />
-          </div>
-        </form>
-        <button type="button" id="newbook">New Book</button>
-        <p class="duplicate"></p>
+    <div class="addDiv">
+      <button data-modal-target="#modal">Add new book+</button>
+      <div class="modal" id="modal">
+        <div class="modal-header">
+          <div class="title">Example Modal</div>
+          <button data-close-button class="close">&times</button>
+        </div>
+        <div class="modal-body">
+          <h3>Add to library</h3>
+          <form action="" method="post" id="myForm">
+            <div class="field">
+              <label for="title">Title<br /></label
+              ><input type="text" name="title" id="title" />
+            </div>
+            <div class="field">
+              <label for="author">Author<br /></label
+              ><input type="text" name="author" id="author" />
+            </div>
+            <div class="field">
+              <label for="pages">Pages<br /></label
+              ><input
+                type="number"
+                name="pages"
+                id="pages"
+                min="1"
+                max="32640"
+              />
+            </div>
+          </form>
+          <button type="button" id="newbook">New Book</button>
+          <p class="duplicate"></p>
+        </div>
       </div>
+      <div id="overlay"></div>
+    </div>
+
+    <div class="hero">
       <div class="container"></div>
     </div>
     <div class="footer">
