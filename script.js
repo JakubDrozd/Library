@@ -6,7 +6,9 @@ const author = document.querySelector("#author");
 
 const pages = document.querySelector("#pages");
 
-const read = document.querySelector("#read");
+const newbook = document
+  .querySelector("#newbook")
+  .addEventListener("click", addBookToLibrary);
 
 window.onload = function viewLibrary() {
   let i = 1;
@@ -43,7 +45,8 @@ function Book(name, author, pages, read) {
   this.read = read;
 }
 
-function addBookToLibrary(book) {
+function addBookToLibrary() {
+  const book = new Book(title.value, author.value, pages.value, read.value);
   myLibrary.push(book);
 }
 
