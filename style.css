@@ -17,14 +17,15 @@ h1 {
 
 form {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   grid-template-rows: 1fr 1fr;
+  gap: 1rem;
 }
 
 .container > div {
   border: 1px solid #333;
   margin-bottom: 1rem;
-  width: 300px;
+  width: fit-content;
   padding: 1rem;
   padding-top: 0.2rem;
   display: flex;
@@ -33,12 +34,25 @@ form {
 }
 
 .sidebar {
-  width: 50%;
+  width: 30%;
   padding-left: 1rem;
 }
 
 .container {
   padding-left: 1rem;
-  width: 50%;
+  width: 70%;
   display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(fit-content, 1fr));
+  grid-template-rows: repeat(4, 1fr);
+}
+
+fieldset {
+  width: 60%;
+}
+fieldset > ul {
+  padding-left: 0;
+}
+
+fieldset > ul > li {
+  list-style: none;
 }

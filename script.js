@@ -4,6 +4,7 @@ window.onload = function viewLibrary() {
   let i = 1;
   myLibrary.forEach((book) => {
     const bookDiv = document.createElement("div");
+    bookDiv.classList.add(`book`);
     bookDiv.classList.add(`book${i}`);
     container.appendChild(bookDiv);
     bookDiv.innerHTML += `
