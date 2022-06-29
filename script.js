@@ -38,15 +38,27 @@ let myLibrary = [
     pages: 295,
     read: "Not read yet",
   },
+  {
+    name: "Harry Potter",
+    author: "J. K. Rowling",
+    pages: 351,
+    read: "Not read yet",
+  },
+  {
+    name: "Darth Plagueis",
+    author: "George Lucas",
+    pages: 354,
+    read: "Not read yet",
+  },
 ];
 
-let queue = [];
-
-function Book(name, author, pages, read) {
-  this.name = name;
-  this.author = author;
-  this.pages = pages;
-  this.read = read;
+class Book {
+  constructor(name, author, pages, read) {
+    this.name = name;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
+  }
 }
 
 function addBookToLibrary() {
@@ -55,12 +67,3 @@ function addBookToLibrary() {
   myLibrary.push(book);
   viewLibrary();
 }
-
-let harryPotter = new Book(
-  "Harry Potter",
-  "J. K. Rowling",
-  351,
-  "Not read yet"
-);
-
-myLibrary.push(harryPotter);
