@@ -25,21 +25,22 @@ function viewLibrary() {
       `;
     const readButton = document.createElement("button");
     bookDiv.appendChild(readButton);
+
     readButton.textContent = "Not read";
-    readButton.style.width = "150px";
+    readButton.style.width = "200px";
     readButton.style.textAlign = "center";
     readButton.style.backgroundColor = "green";
     readButton.style.border = "none";
     readButton.style.borderRadius = "10px";
     readButton.style.color = "white";
     readButton.style.fontWeight = "bold";
-    readButton.style.marginBottom = "0.2rem";
+    readButton.style.marginBottom = "1rem";
     readButton.addEventListener("click", markRead);
 
     const deleteButton = document.createElement("button");
     bookDiv.appendChild(deleteButton);
     deleteButton.textContent = "X";
-    deleteButton.style.width = "40px";
+    deleteButton.style.width = "200px";
     deleteButton.style.textAlign = "center";
     deleteButton.style.backgroundColor = "red";
     deleteButton.style.border = "none";
@@ -87,9 +88,9 @@ let myLibrary = [
 
 class Book {
   constructor(name, author, pages) {
-    this.name = name;
-    this.author = author;
-    this.pages = pages;
+    this.name = name ? name : "Unknown";
+    this.author = author ? author : "Unknown";
+    this.pages = pages ? pages : "Unknown";
   }
 }
 
