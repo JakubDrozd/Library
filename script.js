@@ -21,7 +21,6 @@ function viewLibrary() {
       <ul>
         <li>by ${book.author}</li>
         <li>${book.pages} pages</li>
-        <li>${book.read}</li>
       </ul>
       `;
     const readButton = document.createElement("button");
@@ -73,19 +72,16 @@ let myLibrary = [
     name: "The Hobbit",
     author: "J.R.R Tolkien",
     pages: 295,
-    read: "Not read yet",
   },
   {
     name: "Harry Potter",
     author: "J. K. Rowling",
     pages: 351,
-    read: "Not read yet",
   },
   {
     name: "Darth Plagueis",
     author: "George Lucas",
     pages: 354,
-    read: "Not read yet",
   },
 ];
 
@@ -115,7 +111,6 @@ function addBookToLibrary() {
       <ul>
         <li>by ${book.author}</li>
         <li>${book.pages} pages</li>
-        <li>${book.read}</li>
       </ul>
       `;
     const readButton = document.createElement("button");
