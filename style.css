@@ -1,7 +1,5 @@
 html,
 body {
-  margin: 0;
-  padding: 0;
   min-height: 100%;
   min-width: 100%;
 }
@@ -13,6 +11,7 @@ h1 {
 .hero {
   display: flex;
   justify-content: space-around;
+  gap: 1rem;
 }
 
 form {
@@ -20,6 +19,8 @@ form {
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   grid-template-rows: 1fr 1fr;
   gap: 1rem;
+  outline: 1px solid #333;
+  padding: 1rem;
 }
 
 .container > div {
@@ -36,9 +37,13 @@ form {
 .sidebar {
   width: 30%;
   padding-left: 1rem;
+  outline: 1px solid #333;
+  padding: 1rem;
 }
 
 .container {
+  padding: 1rem;
+  outline: 1px solid #333;
   padding-left: 1rem;
   width: 70%;
   display: grid;
@@ -55,4 +60,8 @@ fieldset > ul {
 
 fieldset > ul > li {
   list-style: none;
+}
+
+button[type="button"] {
+  margin: 1rem;
 }

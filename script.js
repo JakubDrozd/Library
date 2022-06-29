@@ -1,5 +1,13 @@
 const container = document.querySelector(".container");
 
+const title = document.querySelector("#title");
+
+const author = document.querySelector("#author");
+
+const pages = document.querySelector("#pages");
+
+const read = document.querySelector("#read");
+
 window.onload = function viewLibrary() {
   let i = 1;
   myLibrary.forEach((book) => {
