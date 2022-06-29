@@ -13,10 +13,26 @@ body {
 .hero {
   height: 100%;
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: 1rem;
-  background-color: #f0eef1;
   flex: 2 1 auto;
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradient 10s ease infinite;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 form {
@@ -39,6 +55,7 @@ form {
   box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px,
     rgba(0, 0, 0, 0.1) 0px 2px 4px 0px,
     rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+  background-color: #f0eef1;
 }
 
 .sidebar {
@@ -74,7 +91,7 @@ button[type="button"] {
 
 .header {
   background-color: #fffbfb;
-  padding-left: 1rem;
+  padding-left: 0.5rem;
   flex: 0 1 auto;
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
   z-index: 10;
@@ -83,6 +100,7 @@ button[type="button"] {
 .footer {
   display: flex;
   gap: 1rem;
+  padding: 1rem;
   justify-content: center;
   align-items: center;
   background-color: #f0eef1;
@@ -93,13 +111,6 @@ button[type="button"] {
   width: 5rem;
   height: auto;
   border-radius: 50%;
-}
-
-.addDiv {
-  background-color: #f0eef1;
-  text-align: center;
-  padding: 1rem;
-  font-size: 2rem;
 }
 
 *,
@@ -167,4 +178,35 @@ button[type="button"] {
 #overlay.active {
   opacity: 1;
   pointer-events: all;
+}
+
+.addButton {
+  margin: 1rem;
+  width: fit-content;
+  border: 0;
+  outline: 3px solid white;
+  background-color: #1992d4;
+  color: #ffffff;
+  border-radius: 40px;
+  font-size: 1rem;
+  padding-bottom: 0.5rem;
+  padding-top: 0.5rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  background-size: 200% auto;
+  background-image: linear-gradient(
+    to left,
+    #ee7752 0%,
+    #e73c7e 25%,
+    #23a6d5 50%,
+    #23d5ab 100%
+  );
+  transition: 0.5s;
+  transition: all 0.2s ease-in-out;
+}
+
+.addButton:hover {
+  background-position: right center;
+  cursor: pointer;
+  transform: scale(1.1);
 }
