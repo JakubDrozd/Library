@@ -1,20 +1,23 @@
 const container = document.querySelector(".container");
 
-const newBookName = document.getElementById("title");
+const newBookTitle = document.getElementById("title");
 const newBookAuthor = document.getElementById("author");
 const newBookPages = document.getElementById("pages");
 
 class Book {
-  constructor(name, author, pages) {
-    this.name = name ? name : "Unknown";
+  constructor(title, author, pages) {
+    this.title = title ? title : "Unknown";
     this.author = author ? author : "Unknown";
     this.pages = pages ? pages : "Unknown";
   }
   addBookToLibrary() {
     if (!checkForDuplicate(myLibrary)) {
-      const newBook = new Book(name.value, author.value, pages.value);
+      const newBook = new Book(title.value, author.value, pages.value);
       myLibrary.push(newBook);
-      createCard(name.value, author.value, pages.value);
+      createCard(title.value, author.value, pages.value);
+      duplicatePara.textContent = "";
+    } else {
+      duplicatePara.textContent = "This book is already in library";
     }
   }
 }
@@ -23,7 +26,7 @@ const newBookButton = document
   .querySelector("#newbook")
   .addEventListener(
     "click",
-    new Book(newBookName, newBookAuthor, newBookPages).addBookToLibrary
+    new Book(newBookTitle, newBookAuthor, newBookPages).addBookToLibrary
   );
 
 let myLibrary = [
@@ -32,12 +35,12 @@ let myLibrary = [
   new Book("Darth Plagueis", "George Lucas", 354),
 ];
 
-const createCard = (name, author, pages) => {
+const createCard = (title, author, pages) => {
   //CREATE CARD
   const el = document.createElement("div");
   container.appendChild(el);
   el.innerHTML = `
-    <h3 value='${name}'>${name}</h3>
+    <h3 value='${title}'>${title}</h3>
     <ul>
       <li>by ${author}</li>
       <li>${pages} pages</li>
@@ -52,7 +55,7 @@ const createCard = (name, author, pages) => {
   //DELETE-BUTTON
   const deleteButton = document.createElement("button");
   el.appendChild(deleteButton);
-  deleteButton.setAttribute("value", name);
+  deleteButton.setAttribute("value", title);
   deleteButton.classList.add("delete-button");
   deleteButton.textContent = "Remove from library";
   deleteButton.addEventListener("click", deleteBook);
@@ -62,13 +65,13 @@ const createCard = (name, author, pages) => {
 //RENDERING BOOKS
 window.addEventListener(
   "load",
-  myLibrary.forEach((book) => createCard(book.name, book.author, book.pages))
+  myLibrary.forEach((book) => createCard(book.title, book.author, book.pages))
 );
 
 //CHECK IF BOOK IS IN LIBRARY
 function checkForDuplicate(array) {
   array.find((book) => {
-    if (book.name === title.value) {
+    if (book.title === title.value) {
       return true;
     }
     return false;
