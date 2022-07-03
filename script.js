@@ -44,11 +44,13 @@ const createCard = (name, author, pages) => {
   el.appendChild(readButton);
   readButton.classList.add("read-button");
   readButton.textContent = "Not read";
+  readButton.addEventListener("click", markRead);
 
   const deleteButton = document.createElement("button");
   el.appendChild(deleteButton);
   deleteButton.classList.add("delete-button");
   deleteButton.textContent = "Remove from library";
+  deleteButton.addEventListener("click", Book.deleteBook);
   return { el };
 };
 
@@ -73,7 +75,7 @@ function markRead(e) {
     e.target.textContent = "Read";
   } else if (e.target.textContent === "Read") {
     const parent = e.target.parentElement;
-    parent.style.backgroundColor = "white";
+    parent.style.backgroundColor = "#f0eef1";
     e.target.textContent = "Not read";
   }
 }
