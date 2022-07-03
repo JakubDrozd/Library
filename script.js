@@ -13,10 +13,6 @@ class Book {
       generateCard(name.value, author.value, pages.value);
     }
   }
-  deleteBook(e) {
-    const parent = e.target.parentElement;
-    parent.remove();
-  }
 }
 
 const newBookButton = document
@@ -30,35 +26,39 @@ let myLibrary = [
 ];
 
 const createCard = (name, author, pages) => {
+  //CREATE CARD
   const el = document.createElement("div");
+  el.setAttribute("value", name);
   container.appendChild(el);
   el.innerHTML = `
-    <h3>${name}</h3>
+    <h3 value='${name}'>${name}</h3>
     <ul>
       <li>by ${author}</li>
       <li>${pages} pages</li>
     </ul>
     `;
-
+  //READ-BUTTON
   const readButton = document.createElement("button");
   el.appendChild(readButton);
   readButton.classList.add("read-button");
   readButton.textContent = "Not read";
   readButton.addEventListener("click", markRead);
-
+  //DELETE-BUTTON
   const deleteButton = document.createElement("button");
   el.appendChild(deleteButton);
   deleteButton.classList.add("delete-button");
   deleteButton.textContent = "Remove from library";
-  deleteButton.addEventListener("click", Book.deleteBook);
+  deleteButton.addEventListener("click", deleteBook);
   return { el };
 };
 
+//RENDERING BOOKS
 window.addEventListener(
   "load",
   myLibrary.forEach((book) => createCard(book.name, book.author, book.pages))
 );
 
+//CHECK IF BOOK IS IN LIBRARY
 function checkForDuplicate(array) {
   array.find((book) => {
     if (book.name === title.value) {
@@ -68,6 +68,7 @@ function checkForDuplicate(array) {
   });
 }
 
+//MARK READ
 function markRead(e) {
   if (e.target.textContent === "Not read") {
     const parent = e.target.parentElement;
@@ -78,6 +79,11 @@ function markRead(e) {
     parent.style.backgroundColor = "#f0eef1";
     e.target.textContent = "Not read";
   }
+}
+
+function deleteBook(e) {
+  const parent = e.target.parentElement;
+  parent.remove();
 }
 
 const duplicatePara = document.querySelector(".duplicate");
