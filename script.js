@@ -4,6 +4,12 @@ const newBookTitle = document.getElementById("title");
 const newBookAuthor = document.getElementById("author");
 const newBookPages = document.getElementById("pages");
 
+let newBookTitleValue = "";
+
+newBookTitle.addEventListener("change", (e) => {
+  newBookTitleValue = e.target.value;
+});
+
 class Book {
   constructor(title, author, pages) {
     this.title = title ? title : "Unknown";
@@ -11,7 +17,7 @@ class Book {
     this.pages = pages ? pages : "Unknown";
   }
   addBookToLibrary() {
-    if (!checkForDuplicate(myLibrary)) {
+    if (!myLibrary.find((book) => book.title === newBookTitleValue)) {
       const newBook = new Book(title.value, author.value, pages.value);
       myLibrary.push(newBook);
       createCard(title.value, author.value, pages.value);
@@ -69,12 +75,13 @@ window.addEventListener(
 );
 
 //CHECK IF BOOK IS IN LIBRARY
-function checkForDuplicate(array) {
-  array.find((book) => {
-    if (book.title === title.value) {
+function checkForDuplicate() {
+  myLibrary.find((book) => {
+    if (book.title === newBookTitle) {
       return true;
+    } else {
+      return false;
     }
-    return false;
   });
 }
 
