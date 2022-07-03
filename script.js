@@ -8,9 +8,9 @@ class Book {
   }
   addBookToLibrary() {
     if (!checkForDuplicate(myLibrary)) {
-      const newBook = new Book(title.value, author.value, pages.value);
+      const newBook = new Book(name.value, author.value, pages.value);
       myLibrary.push(newBook);
-      generateCard(this.title.value, author.value, pages.value);
+      generateCard(name.value, author.value, pages.value);
     }
   }
   deleteBook(e) {
@@ -29,11 +29,11 @@ let myLibrary = [
   new Book("Darth Plagueis", "George Lucas", 354),
 ];
 
-const createCard = (title, author, pages) => {
+const createCard = (name, author, pages) => {
   const el = document.createElement("div");
   container.appendChild(el);
   el.innerHTML = `
-    <h3>${title}</h3>
+    <h3>${name}</h3>
     <ul>
       <li>by ${author}</li>
       <li>${pages} pages</li>
@@ -54,7 +54,7 @@ const createCard = (title, author, pages) => {
 
 window.addEventListener(
   "load",
-  myLibrary.forEach((book) => createCard(book.title, book.author, book.pages))
+  myLibrary.forEach((book) => createCard(book.name, book.author, book.pages))
 );
 
 function checkForDuplicate(array) {
