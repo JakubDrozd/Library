@@ -35,7 +35,6 @@ let myLibrary = [
 const createCard = (name, author, pages) => {
   //CREATE CARD
   const el = document.createElement("div");
-  el.setAttribute("value", name);
   container.appendChild(el);
   el.innerHTML = `
     <h3 value='${name}'>${name}</h3>
@@ -53,6 +52,7 @@ const createCard = (name, author, pages) => {
   //DELETE-BUTTON
   const deleteButton = document.createElement("button");
   el.appendChild(deleteButton);
+  deleteButton.setAttribute("value", name);
   deleteButton.classList.add("delete-button");
   deleteButton.textContent = "Remove from library";
   deleteButton.addEventListener("click", deleteBook);
@@ -89,6 +89,8 @@ function markRead(e) {
 }
 
 function deleteBook(e) {
+  const index = myLibrary.findIndex((book) => book.name === e.target.value);
+  myLibrary.splice(index, 1);
   const parent = e.target.parentElement;
   parent.remove();
 }

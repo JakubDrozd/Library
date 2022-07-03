@@ -31,7 +31,13 @@
             </div>
             <div class="field">
               <label for="author">Author<br /></label
-              ><input type="text" name="author" id="author" required />
+              ><input
+                type="text"
+                name="author"
+                id="author"
+                required
+                pattern="/^[a-z ,.'-]+$/i"
+              />
             </div>
             <div class="field">
               <label for="pages">Pages<br /></label
