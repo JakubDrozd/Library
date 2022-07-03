@@ -1,5 +1,9 @@
 const container = document.querySelector(".container");
 
+const newBookName = document.getElementById("title");
+const newBookAuthor = document.getElementById("author");
+const newBookPages = document.getElementById("pages");
+
 class Book {
   constructor(name, author, pages) {
     this.name = name ? name : "Unknown";
@@ -10,14 +14,17 @@ class Book {
     if (!checkForDuplicate(myLibrary)) {
       const newBook = new Book(name.value, author.value, pages.value);
       myLibrary.push(newBook);
-      generateCard(name.value, author.value, pages.value);
+      createCard(name.value, author.value, pages.value);
     }
   }
 }
 
 const newBookButton = document
   .querySelector("#newbook")
-  .addEventListener("click", Book.addBookToLibrary);
+  .addEventListener(
+    "click",
+    new Book(newBookName, newBookAuthor, newBookPages).addBookToLibrary
+  );
 
 let myLibrary = [
   new Book("The Hobbit", "J.R.R Tolkien", 295),
