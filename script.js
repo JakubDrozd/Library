@@ -1,53 +1,68 @@
-window.addEventListener("load", viewLibrary);
-
 const container = document.querySelector(".container");
 
-const title = document.querySelector("#title");
+class Book {
+  constructor(name, author, pages) {
+    this.name = name ? name : "Unknown";
+    this.author = author ? author : "Unknown";
+    this.pages = pages ? pages : "Unknown";
+  }
+  addBookToLibrary() {
+    if (!checkForDuplicate(myLibrary)) {
+      const newBook = new Book(title.value, author.value, pages.value);
+      myLibrary.push(newBook);
+      generateCard(this.title.value, author.value, pages.value);
+    }
+  }
+  deleteBook(e) {
+    const parent = e.target.parentElement;
+    parent.remove();
+  }
+}
 
-const author = document.querySelector("#author");
-
-const pages = document.querySelector("#pages");
-
-const newbook = document
+const newBookButton = document
   .querySelector("#newbook")
-  .addEventListener("click", addBookToLibrary);
+  .addEventListener("click", Book.addBookToLibrary);
 
-function viewLibrary() {
-  myLibrary.forEach((book) => {
-    const bookDiv = document.createElement("div");
-    container.appendChild(bookDiv);
-    bookDiv.innerHTML = `
-      <h3>${book.name}</h3>
-      <ul>
-        <li>by ${book.author}</li>
-        <li>${book.pages} pages</li>
-      </ul>
-      `;
-    const readButton = document.createElement("button");
-    bookDiv.appendChild(readButton);
+let myLibrary = [
+  new Book("The Hobbit", "J.R.R Tolkien", 295),
+  new Book("Harry Potter", "J. K. Rowling", 351),
+  new Book("Darth Plagueis", "George Lucas", 354),
+];
 
-    readButton.textContent = "Not read";
-    readButton.style.width = "200px";
-    readButton.style.textAlign = "center";
-    readButton.style.backgroundColor = "green";
-    readButton.style.border = "none";
-    readButton.style.borderRadius = "10px";
-    readButton.style.color = "white";
-    readButton.style.fontWeight = "bold";
-    readButton.style.marginBottom = "1rem";
-    readButton.addEventListener("click", markRead);
+const createCard = (title, author, pages) => {
+  const el = document.createElement("div");
+  container.appendChild(el);
+  el.innerHTML = `
+    <h3>${title}</h3>
+    <ul>
+      <li>by ${author}</li>
+      <li>${pages} pages</li>
+    </ul>
+    `;
 
-    const deleteButton = document.createElement("button");
-    bookDiv.appendChild(deleteButton);
-    deleteButton.textContent = "X";
-    deleteButton.style.width = "200px";
-    deleteButton.style.textAlign = "center";
-    deleteButton.style.backgroundColor = "red";
-    deleteButton.style.border = "none";
-    deleteButton.style.borderRadius = "10px";
-    deleteButton.style.color = "white";
-    deleteButton.style.fontWeight = "bold";
-    deleteButton.addEventListener("click", deleteBook);
+  const readButton = document.createElement("button");
+  el.appendChild(readButton);
+  readButton.classList.add("read-button");
+  readButton.textContent = "Not read";
+
+  const deleteButton = document.createElement("button");
+  el.appendChild(deleteButton);
+  deleteButton.classList.add("delete-button");
+  deleteButton.textContent = "Remove from library";
+  return { el };
+};
+
+window.addEventListener(
+  "load",
+  myLibrary.forEach((book) => createCard(book.title, book.author, book.pages))
+);
+
+function checkForDuplicate(array) {
+  array.find((book) => {
+    if (book.name === title.value) {
+      return true;
+    }
+    return false;
   });
 }
 
@@ -63,92 +78,9 @@ function markRead(e) {
   }
 }
 
-function deleteBook(e) {
-  const parent = e.target.parentElement;
-  parent.remove();
-}
-
-let myLibrary = [
-  {
-    name: "The Hobbit",
-    author: "J.R.R Tolkien",
-    pages: 295,
-  },
-  {
-    name: "Harry Potter",
-    author: "J. K. Rowling",
-    pages: 351,
-  },
-  {
-    name: "Darth Plagueis",
-    author: "George Lucas",
-    pages: 354,
-  },
-];
-
-class Book {
-  constructor(name, author, pages) {
-    this.name = name ? name : "Unknown";
-    this.author = author ? author : "Unknown";
-    this.pages = pages ? pages : "Unknown";
-  }
-}
-
-function addBookToLibrary() {
-  const duplicate = myLibrary.find((book) => {
-    if (book.name === title.value) {
-      return true;
-    }
-
-    return false;
-  });
-  if (duplicate === undefined) {
-    const book = new Book(title.value, author.value, pages.value);
-    myLibrary.push(book);
-    const bookDiv = document.createElement("div");
-    container.appendChild(bookDiv);
-    bookDiv.innerHTML = `
-      <h3>${book.name}</h3>
-      <ul>
-        <li>by ${book.author}</li>
-        <li>${book.pages} pages</li>
-      </ul>
-      `;
-    const readButton = document.createElement("button");
-    bookDiv.appendChild(readButton);
-    readButton.textContent = "Not read";
-    readButton.style.width = "200px";
-    readButton.style.textAlign = "center";
-    readButton.style.backgroundColor = "green";
-    readButton.style.border = "none";
-    readButton.style.borderRadius = "10px";
-    readButton.style.color = "white";
-    readButton.style.fontWeight = "bold";
-    readButton.style.marginBottom = "0.2rem";
-    readButton.addEventListener("click", markRead);
-
-    const deleteButton = document.createElement("button");
-    bookDiv.appendChild(deleteButton);
-    deleteButton.textContent = "X";
-    deleteButton.style.width = "200px";
-    deleteButton.style.textAlign = "center";
-    deleteButton.style.backgroundColor = "red";
-    deleteButton.style.border = "none";
-    deleteButton.style.borderRadius = "10px";
-    deleteButton.style.color = "white";
-    deleteButton.style.fontWeight = "bold";
-    deleteButton.addEventListener("click", deleteBook);
-    duplicatePara.textContent = "";
-  } else {
-    duplicatePara.style.color = "red";
-    duplicatePara.style.fontStyle = "italic";
-    duplicatePara.textContent = "Book is already in library";
-  }
-}
-
 const duplicatePara = document.querySelector(".duplicate");
 
-// MODAL
+// MODAL ----------------------------------------------------------
 
 const openModalButtons = document.querySelectorAll("[data-modal-target]");
 const closeModalButtons = document.querySelectorAll("[data-close-button]");
