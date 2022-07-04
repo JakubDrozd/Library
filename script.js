@@ -74,17 +74,6 @@ window.addEventListener(
   myLibrary.forEach((book) => createCard(book.title, book.author, book.pages))
 );
 
-//CHECK IF BOOK IS IN LIBRARY
-function checkForDuplicate() {
-  myLibrary.find((book) => {
-    if (book.title === newBookTitle) {
-      return true;
-    } else {
-      return false;
-    }
-  });
-}
-
 //MARK READ
 function markRead(e) {
   if (e.target.textContent === "Not read") {
