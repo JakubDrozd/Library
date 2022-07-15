@@ -30,10 +30,9 @@ class Book {
 
 const newBookButton = document
   .querySelector("#newbook")
-  .addEventListener(
-    "click",
-    new Book(newBookTitle, newBookAuthor, newBookPages).addBookToLibrary
-  );
+  .addEventListener("click", function (e) {
+    checkInputs();
+  });
 
 let myLibrary = [
   new Book("The Hobbit", "J.R.R Tolkien", 295),
