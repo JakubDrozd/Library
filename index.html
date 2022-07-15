@@ -24,10 +24,12 @@
         </div>
         <div class="modal-body">
           <h3>Add to library</h3>
+
           <form action="" method="post" id="myForm">
             <div class="field">
               <label for="title">Title<br /></label
               ><input type="text" name="title" id="title" required />
+              <small></small>
             </div>
             <div class="field">
               <label for="author">Author<br /></label
@@ -38,6 +40,7 @@
                 required
                 pattern="/^[a-z ,.'-]+$/i"
               />
+              <small></small>
             </div>
             <div class="field">
               <label for="pages">Pages<br /></label
@@ -49,8 +52,10 @@
                 max="32640"
                 required
               />
+              <small></small>
             </div>
           </form>
+
           <button type="button" id="newbook">New Book</button>
           <p class="duplicate"></p>
         </div>
@@ -64,5 +69,6 @@
       /></a>
     </div>
     <script src="script.js"></script>
+    <script src="validation.js"></script>
   </body>
 </html>
